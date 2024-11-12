@@ -1,0 +1,15 @@
+.weapon {
+    position: absolute;
+
+    --ship-size: 30px;
+
+    bottom: 20px;
+    left: calc(50vw - var(--ship-size)/2);
+
+    height: 100px;
+    width: var(--ship-size);
+
+    background-color: red;
+
+    transform: rotate(-90deg);
+}

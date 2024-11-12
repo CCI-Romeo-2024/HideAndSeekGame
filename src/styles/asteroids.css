@@ -1,0 +1,70 @@
+.asteroids-container {
+    display: flex;
+    justify-self: center;
+    flex-wrap: wrap;
+
+    width: 90vw;
+    height: 90vh;
+}
+
+.asteroids-card {
+    width: calc(90vw / 8);
+    height: calc(90vh / 8);
+
+}
+
+.asteroids-img {
+    position: relative;
+
+    height: 50%;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    aspect-ratio: 1/1;
+
+    top: calc(100% - 50%);
+
+    cursor: pointer;
+
+}
+
+.asteroids-img > img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: contain ;
+}
+
+
+
+.asteroids-1 {
+    background-image: url('../../assets/asteroids/1_asteroide.png');
+}
+.asteroids-2 {
+    background-image: url('../../assets/asteroids/2_asteroide.png');
+}
+.asteroids-3 {
+    background-image: url('../../assets/asteroids/3_asteroide.png');
+}
+.asteroids-4 {
+    background-image: url('../../assets/asteroids/4_asteroide.png');
+}
+.asteroids-5 {
+    background-image: url('../../assets/asteroids/5_asteroide.png');
+}
+.asteroids-6 {
+    background-image: url('../../assets/asteroids/6_asteroide.png');
+}
+.asteroids-7 {
+    background-image: url('../../assets/asteroids/7_asteroide.png');
+}
+.asteroids-8 {
+    background-image: url('../../assets/asteroids/8_asteroide.png');
+}
+.asteroids-9 {
+    background-image: url('../../assets/asteroids/9_asteroide.png');
+}
+.asteroids-10 {
+    background-image: url('../../assets/asteroids/10_asteroide.png');
+}
