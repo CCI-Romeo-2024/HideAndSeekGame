@@ -4,19 +4,72 @@
     <meta charset="UTF-8">
     <title>Hide And Seek Game</title>
 
+    <!--  Global  -->
     <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/noises.css">
+    <link rel="stylesheet" href="src/styles/texts.css">
+
+    <!--  Custom  -->
     <link rel="stylesheet" href="src/styles/asteroids.css">
+    <link rel="stylesheet" href="src/styles/weapon.css">
     <link rel="stylesheet" href="src/styles/hud.css">
+    <link rel="stylesheet" href="src/styles/victory-screen.css">
 
 </head>
 <body>
-    <div class="container">
-        <div class="asteroids-container" id="asteroids-container">
+    <div class="noise">
+        <div id="noise-lines"></div>
+        <div id="noise-snow"></div>
+    </div>
+
+    <div class="app">
+
+        <div class="container">
+            <div class="hud">
+                <div class="hud-score info-text">
+                    SCORE : <span id="hud-score"></span>
+                </div>
+            </div>
+
+            <div class="asteroids-container" id="asteroids-container">
+            </div>
+
+            <div class="weapons">
+                <div class="weapon">
+                    <img src="assets/weapon/weapon.svg" alt=""/>
+                </div>
+<!--                <div class="munitions">-->
+<!--                    <div id="bullet"></div>-->
+<!--                </div>-->
+            </div>
         </div>
 
-        <div class="hud">
-            <div class="weapon">
+        <div class="screen">
+            <div class="victory-container">
+                <div class="title text-3d title-text green-text">
+                    <span>Victory!</span>
+                    <span>Victory!</span>
+                </div>
 
+                <div class="scores">
+                    <div class="score text-3d subtitle-text pink-text">
+                        <span id="score-win-screen">SCORE: 62000</span>
+                        <span id="score-win-screen2">SCORE: 62000</span>
+                    </div>
+                    <div class="best-score text-3d subtitle-text pink-text">
+                        <span id="best-score-win-screen">BEST: 63000</span>
+                        <span id="best-score-win-screen2">BEST: 63000</span>
+                    </div>
+                </div>
+
+
+                <div class="restart-text grey-text info-text">
+                    PRESS 'F' TO PLAY AGAIN
+                </div>
+
+                <div class="credit">
+                    by <a href="https://github.com/69Nesta">@69Nesta</a>
+                </div>
             </div>
         </div>
     </div>
