@@ -36,3 +36,5 @@ const calculateScore = ({startTime, endTime, fireCount}) => {
 
 
 drawAsteroids(game)
+
+updateScore(getRandomInt(60000, 100000))

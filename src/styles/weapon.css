@@ -10,9 +10,9 @@
     pointer-events: none;
 
     --ship-size: 200px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 
-    bottom: -60px;
+    bottom: -40px;
 
     aspect-ratio: 1 / 1;
     width: var(--ship-size);
