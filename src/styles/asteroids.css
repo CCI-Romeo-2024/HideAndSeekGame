@@ -3,13 +3,13 @@
     justify-self: center;
     flex-wrap: wrap;
 
-    width: 90vw;
-    height: 90vh;
+    width: 98vw;
+    height: 80vh;
 }
 
 .asteroids-card {
-    width: calc(90vw / 8);
-    height: calc(90vh / 8);
+    width: calc(98vw / 8);
+    height: calc(80vh / 8);
 
 }
 

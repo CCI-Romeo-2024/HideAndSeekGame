@@ -1,15 +1,14 @@
-.weapon {
-    position: absolute;
+.hud {
+    display: flex;
+    justify-content: center;
 
-    --ship-size: 30px;
+    width: 100vw;
 
-    bottom: 20px;
-    left: calc(50vw - var(--ship-size)/2);
+    height: 60px;
+}
 
-    height: 100px;
-    width: var(--ship-size);
-
-    background-color: red;
-
-    transform: rotate(-90deg);
+.hud-score {
+    position: relative;
+    top: 20px;
+    pointer-events: none;
 }

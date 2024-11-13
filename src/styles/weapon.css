@@ -1,0 +1,36 @@
+.weapons {
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.weapon {
+    position: absolute;
+
+    pointer-events: none;
+
+    --ship-size: 200px;
+    overflow: hidden;
+
+    bottom: -60px;
+
+    aspect-ratio: 1 / 1;
+    width: var(--ship-size);
+
+
+    transform: rotate(0deg);
+    display: flex;
+    justify-content: center;
+
+}
+
+.weapon > img {
+    position: absolute;
+    pointer-events: none;
+
+    flex-shrink: 0;
+    width: 100%;
+
+    z-index: 1;
+}
+
