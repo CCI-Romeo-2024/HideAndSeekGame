@@ -9,22 +9,22 @@ let arrowPos = {
 };
 
 
-const setupArrowPosition = () => {
+const updateArrowPosition = () => {
     arrowPos.x = window.innerWidth/2;
     arrowPos.y = window.innerHeight - (200/2 - (100-40));
 }
 
 
-setupArrowPosition()
+updateArrowPosition()
 
 document.addEventListener('mousemove', (e) => {
     const mousePos = {x: e.clientX, y: e.clientY}
 
     const rotationAngle = getRotationAngle(mousePos, arrowPos);
 
-    arrow.style.transform = ` rotate(${ getRotationAngle(mousePos, arrowPos) }deg)`
+    arrow.style.transform = ` rotate(${rotationAngle}deg)`
     // bullet.style.transform = `rotate(${rotationAngle}deg)`
 
 });
 
-window.addEventListener('resize', setupArrowPosition)
+window.addEventListener('resize', updateArrowPosition)
