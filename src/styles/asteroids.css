@@ -7,6 +7,10 @@
     height: 80vh;
 }
 
+.asteroids-card.him {
+    background: darkgray;
+}
+
 .asteroids-card {
     width: calc(98vw / 8);
     height: calc(80vh / 8);

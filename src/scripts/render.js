@@ -1,4 +1,4 @@
-import { getRandomArbitrary, getRandomInt } from './lib.js';
+import {debug, getRandomArbitrary, getRandomInt} from './lib.js';
 
 
 /**
@@ -6,28 +6,34 @@ import { getRandomArbitrary, getRandomInt } from './lib.js';
  * @param {number} id
  * @return string
  * */
-const generateAsteroidsID = (id) => {
+const getAsteroidsID = (id) => {
     return `asteroids-${id}`;
 }
 
 /**
- * Return HTML for an asteroid
+ * Return HTML for one asteroid
  * @param {number} id
+ * @param {string} alienID
  * @return string
  * */
-const getAsteroidsHTML = (id) => {
+const getAsteroidsHTML = (id, alienID) => {
     const randAsteroidsAsset = getRandomInt(1, 11);
 
-    const randAsteroidsSize = getRandomArbitrary(0.4, 0.95);
+    const asteroidsSize = `(80vh / 8) * ${ getRandomArbitrary(0.4, 0.95).toFixed(3) }`
 
-    const asteroidsSize = `(80vh / 8) * ${randAsteroidsSize}`
-
-    return `
-            <div id="${generateAsteroidsID(id)}" class="asteroids-card">
+    return `<div id="${getAsteroidsID(id)}" class="asteroids-card ${alienID === getAsteroidsID(id) ? 'him' : ''}">
                 <div 
                     class="asteroids-img asteroids-${randAsteroidsAsset}" 
-                    style="height: calc(${asteroidsSize}); top: calc(((80vh / 8) - (${asteroidsSize})) * ${Math.random()}); left: calc(((98vw / 8) - (${asteroidsSize})) * ${Math.random()}); "></div>
+                    style="height: calc(${asteroidsSize}); top: calc(((80vh / 8) - (${asteroidsSize})) * ${Math.random().toFixed(3)}); left: calc(((98vw / 8) - (${asteroidsSize})) * ${Math.random().toFixed(3)}); "></div>
             </div>`
+}
+
+/**
+ * Return HTML of alien
+ * @return string
+ * */
+const getAlienHTML = () => {
+    return `<img class="" src="../../assets/alien/alien.svg" alt="">`
 }
 
 /**
@@ -38,15 +44,16 @@ const getAsteroidsHTML = (id) => {
 const drawAsteroids = (game) => {
     const asteroidsContainer = document.getElementById("asteroids-container");
 
-    game.alienID = getRandomInt(0, 64) // 0-63 -> 64 values
+    game.alienID = getAsteroidsID(getRandomInt(0, 64)) // 0-63 -> 64 values
+    debug(game.alienID);
 
     asteroidsContainer.innerHTML = '';
 
     for (let i = 0; i < 64; i++) {
-        asteroidsContainer.innerHTML += getAsteroidsHTML(i)
+        asteroidsContainer.innerHTML += getAsteroidsHTML(i, game.alienID)
     }
 }
 
-export { drawAsteroids, generateAsteroidsID, getAsteroidsHTML }
+export { drawAsteroids, getAsteroidsID, getAsteroidsHTML, getAlienHTML }
 
 

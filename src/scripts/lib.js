@@ -1,3 +1,5 @@
+import env from './env.js';
+
 /**
  * Return random number between 2 numbers
  * @param {number} min
@@ -40,4 +42,14 @@ const getRotationAngle = (pos1, pos2) => {
     return angleRadians * (180 / Math.PI) + 90;
 }
 
-export { getRandomInt, getRandomArbitrary, getRotationAngle };
+
+/**
+ * Debug fonction, edit env file to activate/deactivate all message in console !
+ * @param {...any} args
+ * @return void
+ */
+const debug = (...args) => {
+    if (env.DEBUG) console.log(...args)
+}
+
+export { getRandomInt, getRandomArbitrary, getRotationAngle, debug };
