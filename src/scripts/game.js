@@ -1,9 +1,10 @@
 import { debug } from './lib.js';
-import { drawAsteroids, getAlienHTML } from './render.js'
-import { addNewScore, calculateScore } from "./score.js";
+import {drawAsteroids, getExplosionHTML} from './render.js'
+import { addNewScore, calculateScore } from "./scoreManager.js";
 import { updateScore } from './hud.js';
 
 import playSound from './soundManager.js';
+import {EScreen, screenManager} from './screenManager.js';
 
 
 const gameDefault = {
@@ -12,12 +13,27 @@ const gameDefault = {
     startTime: 0,
     endTime: 0,
     fireCount: 0,
-    difficulty: 50,
-    interval: null
+    difficulty: 80,
+    interval: null,
+    currentScreen: EScreen.start
 }
 
-const game = {...gameDefault}
+let game = {...gameDefault}
 
+
+
+/**
+ * Start Interval to change the score
+ * @return number
+ **/
+const initScoreIntervalUpdater = () => {
+    return setInterval(() => {
+        debug('Updating Score Interval')
+        game.score = calculateScore(game)
+
+        updateScore(game.score)
+    }, 1000)
+}
 
 document.addEventListener("click", (event) => {
     if (!event.target.classList.contains("asteroids-img") || event.target.classList.contains("active")) return;
@@ -32,26 +48,22 @@ document.addEventListener("click", (event) => {
     if (game.fireCount === 0) {
         game.startTime = Date.now();
 
-        game.interval = setInterval(() => {
-            debug('Updating Score Interval')
-            game.score = calculateScore(game)
+        game.interval = initScoreIntervalUpdater()
 
-            updateScore(game.score)
-
-            if (game.score === 0) {
-                // showLoseScreen(game)
-                debug('You lose')
-            }
-        }, 1000)
+        debug('interval', game.interval)
 
         debug('Timer start');
     }
 
     game.fireCount++
 
-    event.target.style.backgroundImage = `url('../../assets/explosion/explosion2.webp?${new Date().getTime()}')`;
+
+
+    event.target.style.backgroundImage = `none`;
+    event.target.innerHTML = getExplosionHTML()
 
     playSound('explosion')
+
 
 
     if (game.alienID === asteroidID) {
@@ -59,13 +71,17 @@ document.addEventListener("click", (event) => {
 
         clearInterval(game.interval)
 
-        event.target.innerHTML = getAlienHTML();
+        event.target.style.backgroundImage = `url('assets/alien/alien.svg')`
+        event.target.style.backgroundSize = '150%'
+        event.target.style.backgroundPositionX = '50%'
+        event.target.style.backgroundPositionY = '50%'
 
         game.score = calculateScore(game)
 
-        addNewScore(game.score)
+        addNewScore(parseInt(game.score))
 
-        // showWinScreen(game)
+        setTimeout(() => screenManager('win', game)
+        , 1500)
 
         debug('You win');
     }
@@ -75,8 +91,18 @@ document.addEventListener("click", (event) => {
 })
 
 
+/**
+ * Func to start a new game
+ * @return void
+ * */
+const newGame = () => {
+    game = {...gameDefault}
+    updateScore(calculateScore(game))
+    drawAsteroids(game)
+}
 
 
-drawAsteroids(game)
+newGame()
 
-// updateScore(getRandomInt(60000, 100000))
+
+export { game, newGame }

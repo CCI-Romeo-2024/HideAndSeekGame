@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="src/styles/asteroids.css">
     <link rel="stylesheet" href="src/styles/weapon.css">
     <link rel="stylesheet" href="src/styles/hud.css">
-    <link rel="stylesheet" href="src/styles/victory-screen.css">
+    <link rel="stylesheet" href="src/styles/screen-container.css">
 </head>
 <body>
     <div class="noise">
@@ -24,8 +24,7 @@
     </div>
 
     <div class="app">
-
-        <div class="container">
+        <div class="container" id="game-screen" style="display: none">
             <div class="hud">
                 <div class="hud-score info-text">
                     SCORE : <span id="hud-score">100000</span>
@@ -39,14 +38,35 @@
                 <div class="weapon">
                     <img src="assets/weapon/weapon.svg" alt=""/>
                 </div>
-<!--                <div class="munitions">-->
-<!--                    <div id="bullet"></div>-->
-<!--                </div>-->
+                <div class="munitions">
+                    <div id="bullet"></div>
+                </div>
             </div>
         </div>
 
         <div class="screen">
-            <div class="victory-container">
+            <div class="screen-container" id="start-screen" style="display: flex">
+                <div class="title">
+                    <div class="text-3d title-text pink-text">
+                        <span>ALIEN</span>
+                        <span>ALIEN</span>
+                    </div>
+                    <div class="text-3d title-text green-text">
+                        <span>SHOOTER</span>
+                        <span>SHOOTER</span>
+                    </div>
+                </div>
+
+
+                <div class="restart-text grey-text info-text uppercase">
+                    Click anywhere to start
+                </div>
+
+                <div class="credit">
+                    by <a href="https://github.com/69Nesta">@69Nesta</a>
+                </div>
+            </div>
+            <div class="screen-container" id="win-screen" style="display: none">
                 <div class="title text-3d title-text green-text">
                     <span>Victory!</span>
                     <span>Victory!</span>
@@ -64,8 +84,34 @@
                 </div>
 
 
-                <div class="restart-text grey-text info-text">
-                    PRESS 'F' TO PLAY AGAIN
+                <div class="restart-text grey-text info-text uppercase">
+                    PRESS ‘F’ TO PLAY AGAIN
+                </div>
+
+                <div class="credit">
+                    by <a href="https://github.com/69Nesta">@69Nesta</a>
+                </div>
+            </div>
+            <div class="screen-container" id="lose-screen" style="display: none">
+                <div class="title text-3d title-text pink-text">
+                    <span>YOU LOSE!</span>
+                    <span>YOU LOSE!</span>
+                </div>
+
+                <div class="scores">
+                    <div class="score text-3d subtitle-text green-text">
+                        <span id="score-lose-screen">SCORE: 0</span>
+                        <span id="score-lose-screen2">SCORE: 0</span>
+                    </div>
+                    <div class="best-score text-3d subtitle-text green-text">
+                        <span id="best-score-lose-screen">BEST: 63000</span>
+                        <span id="best-score-lose-screen2">BEST: 63000</span>
+                    </div>
+                </div>
+
+
+                <div class="restart-text grey-text info-text uppercase">
+                    PRESS ‘F’ TO PLAY AGAIN
                 </div>
 
                 <div class="credit">
@@ -75,6 +121,6 @@
         </div>
     </div>
 
-    <script src="./src/scripts/main.js" type="module"></script>
+    <script src="src/scripts/main.js" type="module"></script>
 </body>
 </html>

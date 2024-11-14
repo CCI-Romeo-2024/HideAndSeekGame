@@ -9,6 +9,7 @@ html, body {
 
     color: white;
 
+    cursor: crosshair;
 }
 
 :root {
@@ -31,4 +32,6 @@ body {
     background-position: center;
     background-size: 60%;
     background-repeat: repeat;
+
+    flex-direction: column;
 }

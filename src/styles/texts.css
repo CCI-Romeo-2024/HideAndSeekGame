@@ -83,7 +83,16 @@
     color: #C0C0C0;
 }
 
+.credit, .credit > a {
+    color: #707070;
 
+    font-size: 16px;
+    letter-spacing: 0.32px;
+}
+
+.credit:hover, .credit:hover > a {
+    color: #9a9a9a;
+}
 
 
 .green-text > span:nth-child(1), .green-text > span:nth-child(1) > span  {
@@ -107,4 +116,9 @@
 .pink-text > span:nth-child(2), .pink-text > span:nth-child(2) > span {
     color: #FFABBA;
 
+}
+
+
+.uppercase {
+    text-transform: uppercase;
 }

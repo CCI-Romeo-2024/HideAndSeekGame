@@ -15,8 +15,6 @@ const updateArrowPosition = () => {
 }
 
 
-updateArrowPosition()
-
 document.addEventListener('mousemove', (e) => {
     const mousePos = {x: e.clientX, y: e.clientY}
 
@@ -24,7 +22,8 @@ document.addEventListener('mousemove', (e) => {
 
     arrow.style.transform = ` rotate(${rotationAngle}deg)`
     // bullet.style.transform = `rotate(${rotationAngle}deg)`
-
 });
 
 window.addEventListener('resize', updateArrowPosition)
+
+updateArrowPosition()
