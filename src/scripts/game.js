@@ -57,6 +57,8 @@ document.addEventListener("click", (event) => {
     if (game.alienID === asteroidID) {
         game.endTime = Date.now();
 
+        clearInterval(game.interval)
+
         event.target.innerHTML = getAlienHTML();
 
         game.score = calculateScore(game)

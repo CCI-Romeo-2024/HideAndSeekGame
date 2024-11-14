@@ -1,3 +1,5 @@
+import {debug} from './lib.js';
+
 /**
  * Return the score of Player
  * @param {number} startTime
@@ -15,10 +17,14 @@ const calculateScore = ({startTime, endTime , fireCount, difficulty}) => {
 
 /**
  * Return history of scores
- * @return Object
+ * @return [number]
  **/
 const getScores = () => {
-    return JSON.parse(localStorage.getItem('scores'))
+    const scores = JSON.parse(localStorage.getItem('scores'))
+
+    if (!scores) localStorage.setItem('scores', JSON.stringify([]))
+
+    return scores ? scores : []
 }
 
 /**
@@ -26,7 +32,7 @@ const getScores = () => {
  * @return number
  **/
 const getBestScore = () => {
-    const score = parseInt(getScores().sort((a, b) => a.score - b.score).shift())
+    const score = getScores().sort((a, b) => a - b).shift()
     return score ? score : 0
 }
 
