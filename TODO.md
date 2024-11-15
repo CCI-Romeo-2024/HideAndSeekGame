@@ -9,4 +9,4 @@
 - [x] Click (Start Screen) -> remove screen
 - [ ] Animation at projectile launch 
 - [ ] Change alien position every X seconds 
-- [ ] Fix reveal animation can click after
+- [x] Fix reveal animation can click after

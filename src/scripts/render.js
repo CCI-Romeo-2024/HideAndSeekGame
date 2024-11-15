@@ -80,6 +80,8 @@ const revealAlien = (alienID) => {
             alienElement.style.backgroundPositionX = '50%'
             alienElement.style.backgroundPositionY = '50%'
 
+            alienElement.classList.add('active')
+
             if (soundPlayed.includes(timerOut)) return;
 
             soundPlayed.push(timerOut)
