@@ -8,3 +8,4 @@
 - [x] Code Start Screen
 - [x] Click (Start Screen) -> remove screen
 - [ ] Animation at projectile launch 
+- [ ] Change alien position every X seconds 
