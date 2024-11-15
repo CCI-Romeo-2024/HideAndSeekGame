@@ -18,7 +18,7 @@ import { revealAlien } from './render.js';
 const calculateScore = (game) => {
     const timer = ((game.endTime ? game.endTime : Date.now()) - (game.startTime ? game.startTime : Date.now())) / 1000
 
-    const score = (100000 - ((1000 + game.difficulty*10) * game.fireCount > 1 ? game.fireCount-1 : 0) - (timer) * (game.difficulty*500))
+    const score = (100000 - ((1000 + game.difficulty*10) * game.fireCount > 1 ? game.fireCount-1 : 0) - (timer) * (game.difficulty*50))
 
 
     if (score <= 0 && game.currentScreen === EScreen.game) {
