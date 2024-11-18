@@ -15,6 +15,7 @@
     width: calc(98vw / 8);
     height: calc(80vh / 8);
 
+    z-index: 2;
 }
 
 .asteroids-img.active {

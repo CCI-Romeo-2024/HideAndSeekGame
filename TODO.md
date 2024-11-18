@@ -7,6 +7,6 @@
 - [x] When win show Win screen after 2s
 - [x] Code Start Screen
 - [x] Click (Start Screen) -> remove screen
-- [ ] Animation at projectile launch 
+- [x] Animation at projectile launch 
 - [ ] Change alien position every X seconds 
 - [x] Fix reveal animation can click after

@@ -5,6 +5,7 @@ import { updateScore } from './hud.js';
 
 import playSound from './soundManager.js';
 import {EScreen, screenManager} from './screenManager.js';
+import {fireBulletAnimation} from './weaponManger.js';
 
 
 const gameDefault = {
@@ -15,7 +16,7 @@ const gameDefault = {
     fireCount: 0,
     difficulty: 80,
     interval: null,
-    currentScreen: EScreen.start
+    currentScreen: EScreen.game
 }
 
 let game = {...gameDefault}
@@ -57,37 +58,41 @@ document.addEventListener("click", (event) => {
 
     game.fireCount++
 
+    const mousePos = {x: event.clientX, y: event.clientY}
+
+    fireBulletAnimation(mousePos, game)
 
 
-    event.target.style.backgroundImage = `none`;
-    event.target.innerHTML = getExplosionHTML()
+    setTimeout(() => {
+        event.target.style.backgroundImage = `none`;
+        event.target.innerHTML = getExplosionHTML()
 
-    playSound('explosion')
-
-
-
-    if (game.alienID === asteroidID) {
-        game.endTime = Date.now();
-
-        clearInterval(game.interval)
-
-        event.target.style.backgroundImage = `url('assets/alien/alien.svg')`
-        event.target.style.backgroundSize = '150%'
-        event.target.style.backgroundPositionX = '50%'
-        event.target.style.backgroundPositionY = '50%'
-
-        game.score = calculateScore(game)
-
-        addNewScore(parseInt(game.score))
-
-        setTimeout(() => screenManager('win', game)
-        , 1500)
-
-        debug('You win');
-    }
+        playSound('explosion')
 
 
-    updateScore(calculateScore(game))
+
+        if (game.alienID === asteroidID) {
+            game.endTime = Date.now();
+
+            clearInterval(game.interval)
+
+            event.target.style.backgroundImage = `url('assets/alien/alien.svg')`
+            event.target.style.backgroundSize = '150%'
+            event.target.style.backgroundPositionX = '50%'
+            event.target.style.backgroundPositionY = '50%'
+
+            game.score = calculateScore(game)
+
+            addNewScore(parseInt(game.score))
+
+            setTimeout(() => screenManager('win', game), 1500)
+
+            debug('You win');
+        }
+
+
+        updateScore(calculateScore(game))
+    }, 100)
 })
 
 
