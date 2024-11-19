@@ -1,11 +1,10 @@
-import { debug } from './lib.js';
-import {drawAsteroids, getExplosionHTML} from './render.js'
+import { drawAsteroids, getExplosionHTML, fireBulletAnimation, changeAlienPosition } from './render.js'
 import { addNewScore, calculateScore } from "./scoreManager.js";
+import { EScreen, screenManager } from './screenManager.js';
 import { updateScore } from './hud.js';
+import { debug } from './lib.js';
 
 import playSound from './soundManager.js';
-import {EScreen, screenManager} from './screenManager.js';
-import {fireBulletAnimation} from './weaponManger.js';
 
 
 const gameDefault = {
@@ -16,7 +15,8 @@ const gameDefault = {
     fireCount: 0,
     difficulty: 80,
     interval: null,
-    currentScreen: EScreen.game
+    remainingAsteroid: [],
+    currentScreen: EScreen.start
 }
 
 let game = {...gameDefault}
@@ -27,12 +27,14 @@ let game = {...gameDefault}
  * Start Interval to change the score
  * @return number
  **/
-const initScoreIntervalUpdater = () => {
+const initGameIntervalUpdater = () => {
     return setInterval(() => {
-        debug('Updating Score Interval')
-        game.score = calculateScore(game)
+        debug('Updating Game Interval')
+        changeAlienPosition(game)
 
+        game.score = calculateScore(game)
         updateScore(game.score)
+
     }, 1000)
 }
 
@@ -46,10 +48,16 @@ document.addEventListener("click", (event) => {
 
     event.target.classList.add("active");
 
+    const asteroidIndex = game.remainingAsteroid.indexOf(asteroidID);
+    if (asteroidIndex > -1) {
+        game.remainingAsteroid.splice(asteroidIndex, 1);
+    }
+
+
     if (game.fireCount === 0) {
         game.startTime = Date.now();
 
-        game.interval = initScoreIntervalUpdater()
+        game.interval = initGameIntervalUpdater()
 
         debug('interval', game.interval)
 
@@ -61,6 +69,7 @@ document.addEventListener("click", (event) => {
     const mousePos = {x: event.clientX, y: event.clientY}
 
     fireBulletAnimation(mousePos, game)
+    playSound('fire')
 
 
     setTimeout(() => {

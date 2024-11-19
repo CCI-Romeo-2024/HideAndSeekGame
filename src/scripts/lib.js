@@ -64,7 +64,7 @@ const getDistance = (pos1, pos2) => {
 
 
 /**
- * Debug fonction, edit env file to activate/deactivate all message in console !
+ * Debug function, edit env file to activate/deactivate all message in console !
  * @param {...any} args
  * @return void
  */

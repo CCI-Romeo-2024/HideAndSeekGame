@@ -8,6 +8,6 @@
 - [x] Code Start Screen
 - [x] Click (Start Screen) -> remove screen
 - [x] Animation at projectile launch 
-- [ ] Change alien position every X seconds 
+- [x] Change alien position every X seconds 
 - [x] Fix reveal animation can click after
-- [ ] Add more sound effect (win, lose, start, ...)
+- [ ] Add more sound effect (win, lose, start, fire, ...)

@@ -1,12 +1,16 @@
-import {debug, getRandomArbitrary, getRandomInt} from './lib.js';
+import {debug, getDistance, getRandomArbitrary, getRandomInt} from './lib.js';
 import playSound from './soundManager.js';
+import { arrowPos } from './weaponManger.js';
 import env from './env.js';
+
+
+
 
 
 /**
  * Return the html id
- * @param {number} id
- * @return string
+ * @param {Number} id
+ * @return String
  * */
 const getAsteroidsID = (id) => {
     return `asteroids-${id}`;
@@ -14,16 +18,16 @@ const getAsteroidsID = (id) => {
 
 /**
  * Return HTML for one asteroid
- * @param {number} id
- * @param {string} alienID
- * @return string
+ * @param {String} asteroidsID
+ * @param {Boolean} isAlien
+ * @return String
  * */
-const getAsteroidsHTML = (id, alienID) => {
+const getAsteroidsHTML = (asteroidsID, isAlien) => {
     const randAsteroidsAsset = getRandomInt(1, 11);
 
     const asteroidsSize = `(80vh / 8) * ${ getRandomArbitrary(0.4, 0.95).toFixed(3) }`
 
-    return `<div id="${getAsteroidsID(id)}" class="asteroids-card ${alienID === getAsteroidsID(id) && env.DEBUG ? 'him' : ''}">
+    return `<div id="${asteroidsID}" class="asteroids-card ${isAlien && env.DEBUG ? 'him' : ''}">
                 <div 
                     class="asteroids-img asteroids-${randAsteroidsAsset}" 
                     style="height: calc(${asteroidsSize}); top: calc(((80vh / 8) - (${asteroidsSize})) * ${Math.random().toFixed(3)}); left: calc(((98vw / 8) - (${asteroidsSize})) * ${Math.random().toFixed(3)}); "></div>
@@ -32,7 +36,7 @@ const getAsteroidsHTML = (id, alienID) => {
 
 /**
  * Return HTML of alien
- * @return string
+ * @return String
  * */
 const getExplosionHTML = () => {
     return `<img class="" src="assets/explosion/explosion2.webp?${new Date().getTime()}" alt="">`
@@ -41,6 +45,8 @@ const getExplosionHTML = () => {
 /**
  * Draw all asteroids
  * @param {Object} game
+ * @param {String} game.alienID
+ * @param {Array} game.remainingAsteroid
  * @return void
  * */
 const drawAsteroids = (game) => {
@@ -50,16 +56,65 @@ const drawAsteroids = (game) => {
     debug(game.alienID);
 
     asteroidsContainer.innerHTML = '';
+    game.remainingAsteroid = []
 
     for (let i = 0; i < 64; i++) {
-        asteroidsContainer.innerHTML += getAsteroidsHTML(i, game.alienID)
+        const asteroidsID = getAsteroidsID(i)
+        game.remainingAsteroid.push(asteroidsID);
+        asteroidsContainer.innerHTML += getAsteroidsHTML(asteroidsID, game.alienID === asteroidsID)
     }
+}
+
+
+/**
+ * Start fire Animation
+ * @param {Object} mousePos
+ * @param {number} mousePos.x
+ * @param {number} mousePos.y
+ * @param {number} fireCount
+ *
+ * @return {number}
+ * */
+const fireBulletAnimation = (mousePos, {fireCount}) => {
+    const distance = getDistance(mousePos, arrowPos);
+
+    const munitionsElement = document.getElementById('munitions');
+
+    munitionsElement.innerHTML += `<div class="bullet" id="bullet-${fireCount}"></div>`
+
+    const bulletElement = document.getElementById(`bullet-${fireCount}`)
+
+
+    requestAnimationFrame(() => {
+        bulletElement.style.transform = `translateY(-${distance.toFixed(1) - 20}px)`;
+    });
+
+    setTimeout(() => {
+        bulletElement.remove()
+    }, 100)
+}
+
+
+const changeAlienPosition = (game) => {
+    const newAlienPositionIndex = getRandomInt(0, game.remainingAsteroid.length)
+    const newAlienPosition = game.remainingAsteroid[newAlienPositionIndex]
+
+    if (env.DEBUG) {
+        document.getElementById(game.alienID).classList.remove('him')
+        document.getElementById(newAlienPosition).classList.add('him')
+    }
+
+    game.alienID = newAlienPosition
+
+
+
+
 }
 
 /**
  * Play animation to reveal Alien position
- * @param {string} alienID
- * @return void
+ * @param {String} alienID
+ * @return Void
  * */
 const revealAlien = (alienID) => {
     const asteroidsList = document.querySelectorAll('.asteroids-img:not(.active)')
@@ -94,7 +149,7 @@ const revealAlien = (alienID) => {
 
 /**
  * Return score HTML
- * @param {number=} value
+ * @param {Number=} value
  * @return string
  * */
 const getScoreHTML = (value = 0) => {
@@ -103,13 +158,13 @@ const getScoreHTML = (value = 0) => {
 
 /**
  * Return Best score HTML
- * @param {number=} value
- * @return string
+ * @param {Number=} value
+ * @return String
  * */
 const getBestScoreHTML = (value = 0) => {
     return `BEST: ${value}`
 }
 
-export { drawAsteroids, getAsteroidsID, getAsteroidsHTML, getExplosionHTML, revealAlien, getScoreHTML, getBestScoreHTML }
+export { drawAsteroids, getAsteroidsID, getAsteroidsHTML, getExplosionHTML, fireBulletAnimation, changeAlienPosition, revealAlien, getScoreHTML, getBestScoreHTML }
 
 

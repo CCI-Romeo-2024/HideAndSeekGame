@@ -43,14 +43,14 @@
 .bullet {
     align-self: center;
 
-    height: 10px;
-    width: 3px;
+    height: 16px;
+    width: 5px;
 
     background-color: white;
 
-    -webkit-box-shadow:0 0 17px 6px rgba(255,242,176,1);
-    -moz-box-shadow: 0 0 17px 6px rgba(255,242,176,1);
-    box-shadow: 0 0 17px 6px rgba(255,242,176,1);
+    -webkit-box-shadow:0 0 16px 6px rgba(255,242,176,1);
+    -moz-box-shadow: 0 0 16px 6px rgba(255,242,176,1);
+    box-shadow: 0 0 16px 6px rgba(255,242,176,1);
 
     transition: all 100ms ease-in;
 

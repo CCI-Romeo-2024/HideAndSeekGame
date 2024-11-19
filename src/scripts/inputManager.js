@@ -7,8 +7,7 @@ document.addEventListener('keyup', (event) => {
     switch(event.key) {
         case 'f':
             if (![EScreen.win, EScreen.lose].includes(game.currentScreen)) break;
-
-            newGame()
+            if (game.currentScreen !== EScreen.start) newGame()
 
             screenManager('game', game)
 
