@@ -1,5 +1,5 @@
 import {debug, getDistance, getRandomArbitrary, getRandomInt} from './lib.js';
-import playSound from './soundManager.js';
+import {EAudio, playSound} from './soundManager.js';
 import { arrowPos } from './weaponManger.js';
 import env from './env.js';
 
@@ -140,7 +140,7 @@ const revealAlien = (alienID) => {
             if (soundPlayed.includes(timerOut)) return;
 
             soundPlayed.push(timerOut)
-            playSound('explosion')
+            playSound(EAudio.explosion)
 
         }, timerOut)
 

@@ -4,7 +4,7 @@ import { EScreen, screenManager } from './screenManager.js';
 import { updateScore } from './hud.js';
 import { debug } from './lib.js';
 
-import playSound from './soundManager.js';
+import {EAudio, playSound} from './soundManager.js';
 
 
 const gameDefault = {
@@ -13,7 +13,7 @@ const gameDefault = {
     startTime: 0,
     endTime: 0,
     fireCount: 0,
-    difficulty: 80,
+    difficulty: 100,
     interval: null,
     remainingAsteroid: [],
     currentScreen: EScreen.start
@@ -69,14 +69,14 @@ document.addEventListener("click", (event) => {
     const mousePos = {x: event.clientX, y: event.clientY}
 
     fireBulletAnimation(mousePos, game)
-    playSound('fire')
+    playSound(EAudio.fire)
 
 
     setTimeout(() => {
         event.target.style.backgroundImage = `none`;
         event.target.innerHTML = getExplosionHTML()
 
-        playSound('explosion')
+        playSound(EAudio.explosion)
 
 
 
@@ -91,6 +91,8 @@ document.addEventListener("click", (event) => {
             event.target.style.backgroundPositionY = '50%'
 
             game.score = calculateScore(game)
+
+            playSound(EAudio.win)
 
             addNewScore(parseInt(game.score))
 
@@ -117,6 +119,6 @@ const newGame = () => {
 
 
 newGame()
-
+playSound(EAudio.music)
 
 export { game, newGame }

@@ -1,6 +1,7 @@
 import { debug } from './lib.js';
 import {EScreen, screenManager} from './screenManager.js';
 import { revealAlien } from './render.js';
+import {EAudio, playSound} from "./soundManager";
 
 
 /**
@@ -18,7 +19,7 @@ import { revealAlien } from './render.js';
 const calculateScore = (game) => {
     const timer = ((game.endTime ? game.endTime : Date.now()) - (game.startTime ? game.startTime : Date.now())) / 1000
 
-    const score = (100000 - ((1000 + game.difficulty*10) * game.fireCount > 1 ? game.fireCount-1 : 0) - (timer) * (game.difficulty*50))
+    const score = (100000 - ((1000 + game.difficulty*20) * game.fireCount > 1 ? game.fireCount-1 : 0) - (timer) * (game.difficulty*50))
 
 
     if (score <= 0 && game.currentScreen === EScreen.game) {
@@ -26,6 +27,8 @@ const calculateScore = (game) => {
         clearInterval(game.interval)
 
         revealAlien(game.alienID)
+
+        playSound(EAudio.lose)
 
         setTimeout(() => screenManager('lose', game), 3000)
 
@@ -42,9 +45,9 @@ const calculateScore = (game) => {
  * @return [number]
  **/
 const getScores = () => {
-    const scores = JSON.parse(localStorage.getItem('scores'))
+    const scores = JSON.parse(localStorage.getItem('scoreHistory'))
 
-    if (!scores) localStorage.setItem('scores', JSON.stringify([]))
+    if (!scores) localStorage.setItem('scoreHistory', JSON.stringify([]))
 
     return scores ? scores : []
 }
