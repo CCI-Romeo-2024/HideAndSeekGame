@@ -11,3 +11,5 @@
 - [x] Change alien position every X seconds 
 - [x] Fix reveal animation can click after
 - [x] Add more sound effect (win, lose, start, fire, ...)
+- [ ] Settings menu
+- [ ] Fix score history error
