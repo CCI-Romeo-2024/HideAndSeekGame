@@ -1,4 +1,4 @@
-import {getRotationAngle, getDistance, debug} from './lib.js';
+import { getRotationAngle } from './lib.js';
 
 const arrow = document.querySelector('.weapon');
 
