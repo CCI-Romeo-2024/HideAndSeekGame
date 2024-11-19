@@ -153,7 +153,8 @@ const revealAlien = (alienID) => {
  * @return string
  * */
 const getScoreHTML = (value = 0) => {
-    return `SCORE: ${value}`
+
+    return `SCORE: ${value.toFixed(0)}`
 }
 
 /**
@@ -162,7 +163,7 @@ const getScoreHTML = (value = 0) => {
  * @return String
  * */
 const getBestScoreHTML = (value = 0) => {
-    return `BEST: ${value}`
+    return `BEST: ${value.toFixed(0)}`
 }
 
 export { drawAsteroids, getAsteroidsID, getAsteroidsHTML, getExplosionHTML, fireBulletAnimation, changeAlienPosition, revealAlien, getScoreHTML, getBestScoreHTML }

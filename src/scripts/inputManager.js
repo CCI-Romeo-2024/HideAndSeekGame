@@ -1,7 +1,7 @@
 import { game, newGame } from './game.js'
 import { debug } from './lib.js';
 import { EScreen, screenManager } from './screenManager.js';
-import {playSound} from "./soundManager";
+import {EAudio, playSound} from "./soundManager.js";
 
 document.addEventListener('keyup', (event) => {
     debug(game.currentScreen);
@@ -21,7 +21,7 @@ document.addEventListener('click', () => {
     debug('click');
     if (game.currentScreen !== EScreen.start) return;
 
-    playSound(EScreen.start);
+    playSound(EAudio.start);
 
     screenManager('game', game)
 })

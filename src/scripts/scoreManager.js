@@ -1,7 +1,7 @@
 import { debug } from './lib.js';
 import {EScreen, screenManager} from './screenManager.js';
 import { revealAlien } from './render.js';
-import {EAudio, playSound} from "./soundManager";
+import {EAudio, playSound} from "./soundManager.js";
 
 
 /**
@@ -47,9 +47,7 @@ const calculateScore = (game) => {
 const getScores = () => {
     const scores = JSON.parse(localStorage.getItem('scoreHistory'))
 
-    if (!scores) localStorage.setItem('scoreHistory', JSON.stringify([]))
-
-    return scores ? scores : []
+    return scores && Array.isArray(scores) ? scores : []
 }
 
 /**
@@ -71,7 +69,7 @@ const addNewScore = (value) => {
 
     scores.push(value)
 
-    localStorage.setItem('scores', JSON.stringify(scores))
+    localStorage.setItem('scoreHistory', JSON.stringify(scores))
 }
 
 
