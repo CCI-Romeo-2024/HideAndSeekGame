@@ -13,14 +13,13 @@ const gameDefault = {
     startTime: 0,
     endTime: 0,
     fireCount: 0,
-    difficulty: 100,
+    difficulty: 70,
     interval: null,
     remainingAsteroid: [],
     currentScreen: EScreen.start
 }
 
 let game = {...gameDefault}
-
 
 
 /**
@@ -45,6 +44,7 @@ document.addEventListener("click", (event) => {
     debug(asteroidID);
 
     if (game.endTime !== 0) return;
+    const time = Date.now();
 
     event.target.classList.add("active");
 
@@ -55,7 +55,7 @@ document.addEventListener("click", (event) => {
 
 
     if (game.fireCount === 0) {
-        game.startTime = Date.now();
+        game.startTime = time;
 
         game.interval = initGameIntervalUpdater()
 
@@ -81,7 +81,7 @@ document.addEventListener("click", (event) => {
 
 
         if (game.alienID === asteroidID) {
-            game.endTime = Date.now();
+            game.endTime = time;
 
             clearInterval(game.interval)
 
