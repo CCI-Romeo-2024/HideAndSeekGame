@@ -13,7 +13,7 @@ const gameDefault = {
     startTime: 0,
     endTime: 0,
     fireCount: 0,
-    difficulty: 70,
+    difficulty: 70, // ~= 25 Bullets
     interval: null,
     remainingAsteroid: [],
     currentScreen: EScreen.start
@@ -119,6 +119,5 @@ const newGame = () => {
 
 
 newGame()
-playSound(EAudio.music)
 
 export { game, newGame }

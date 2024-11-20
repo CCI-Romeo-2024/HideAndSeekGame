@@ -21,6 +21,8 @@ document.addEventListener('click', () => {
     debug('click');
     if (game.currentScreen !== EScreen.start) return;
 
+    playSound(EAudio.music)
+
     playSound(EAudio.start);
 
     screenManager('game', game)
