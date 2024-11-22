@@ -40,11 +40,13 @@
 
 }
 
-.asteroids-img > img {
+.asteroids-img > video {
     height: 100%;
     width: 100%;
 
-    object-fit: contain ;
+    object-fit: contain;
+
+    z-index: 1;
 }
 
 

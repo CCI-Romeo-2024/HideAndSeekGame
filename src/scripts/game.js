@@ -13,7 +13,7 @@ const gameDefault = {
     startTime: 0,
     endTime: 0,
     fireCount: 0,
-    difficulty: 70, // ~= 25 Bullets
+    difficulty: 75, // ~= 25 Bullets in 10s
     interval: null,
     remainingAsteroid: [],
     currentScreen: EScreen.start
@@ -86,7 +86,7 @@ document.addEventListener("click", (event) => {
             clearInterval(game.interval)
 
             event.target.style.backgroundImage = `url('assets/alien/alien.svg')`
-            event.target.style.backgroundSize = '150%'
+            event.target.style.backgroundSize = '100%'
             event.target.style.backgroundPositionX = '50%'
             event.target.style.backgroundPositionY = '50%'
 

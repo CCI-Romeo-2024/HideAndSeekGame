@@ -39,7 +39,7 @@ const getAsteroidsHTML = (asteroidsID, isAlien) => {
  * @return String
  * */
 const getExplosionHTML = () => {
-    return `<img class="" src="assets/explosion/explosion2.webp?${new Date().getTime()}" alt="">`
+    return `<video autoplay class=""><source src="assets/explosion/explosion2.webm" type="video/webm" /></video>`
 }
 
 /**
@@ -95,6 +95,11 @@ const fireBulletAnimation = (mousePos, {fireCount}) => {
 }
 
 
+/**
+ * Change alien position randomly
+ * @param {Object} game
+ * @return void
+ */
 const changeAlienPosition = (game) => {
     const newAlienPositionIndex = getRandomInt(0, game.remainingAsteroid.length)
     const newAlienPosition = game.remainingAsteroid[newAlienPositionIndex]
@@ -106,10 +111,8 @@ const changeAlienPosition = (game) => {
 
     game.alienID = newAlienPosition
 
-
-
-
 }
+
 
 /**
  * Play animation to reveal Alien position

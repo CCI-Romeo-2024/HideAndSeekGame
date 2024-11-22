@@ -17,7 +17,7 @@ import {EAudio, playSound} from "./soundManager.js";
  * @return number
  * */
 const calculateScore = (game) => {
-    const timer = ((game.endTime ? game.endTime : Date.now()) - (game.startTime ? game.startTime : Date.now())) / 1000
+    const timer = ((game.endTime ? game.endTime : Date.now()) - (game.startTime ? game.startTime : Date.now())) / 1000 // time in seconds
 
     const score = (100000 - ((1000 + game.difficulty*20) * game.fireCount > 1 ? game.fireCount-1 : 0) - (timer) * (game.difficulty*50))
 
