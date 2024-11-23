@@ -1,10 +1,10 @@
 import { drawAsteroids, getExplosionHTML, fireBulletAnimation, changeAlienPosition } from './render.js'
 import { addNewScore, calculateScore } from "./scoreManager.js";
 import { EScreen, screenManager } from './screenManager.js';
+import { EAudio, playSound } from './soundManager.js';
 import { updateScore } from './hud.js';
 import { debug } from './lib.js';
 
-import {EAudio, playSound} from './soundManager.js';
 
 
 const gameDefault = {
@@ -13,7 +13,7 @@ const gameDefault = {
     startTime: 0,
     endTime: 0,
     fireCount: 0,
-    difficulty: 75, // ~= 25 Bullets in 10s
+    difficulty: 75, // ~= 25 bullet in 10s
     interval: null,
     remainingAsteroid: [],
     currentScreen: EScreen.start

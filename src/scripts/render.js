@@ -1,5 +1,5 @@
-import {debug, getDistance, getRandomArbitrary, getRandomInt} from './lib.js';
-import {EAudio, playSound} from './soundManager.js';
+import { debug, getDistance, getRandomArbitrary, getRandomInt } from './lib.js';
+import { EAudio, playSound } from './soundManager.js';
 import { arrowPos } from './weaponManger.js';
 import env from './env.js';
 

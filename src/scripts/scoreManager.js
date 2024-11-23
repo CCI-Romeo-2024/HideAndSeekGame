@@ -1,7 +1,7 @@
-import { debug } from './lib.js';
-import {EScreen, screenManager} from './screenManager.js';
+import { EScreen, screenManager } from './screenManager.js';
+import { EAudio, playSound } from "./soundManager.js";
 import { revealAlien } from './render.js';
-import {EAudio, playSound} from "./soundManager.js";
+import { debug } from './lib.js';
 
 
 /**
@@ -19,7 +19,7 @@ import {EAudio, playSound} from "./soundManager.js";
 const calculateScore = (game) => {
     const timer = ((game.endTime ? game.endTime : Date.now()) - (game.startTime ? game.startTime : Date.now())) / 1000 // time in seconds
 
-    const score = (100000 - ((1000 + game.difficulty*20) * game.fireCount > 1 ? game.fireCount-1 : 0) - (timer) * (game.difficulty*50))
+    const score = (100000 - ((1000 + game.difficulty * 20) * (game.fireCount > 1 ? game.fireCount-1 : 0)) - (timer) * (game.difficulty*50))
 
 
     if (score <= 0 && game.currentScreen === EScreen.game) {
